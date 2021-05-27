@@ -12,7 +12,7 @@ WORKDIR /DockerizedApp
 ENTRYPOINT ["dotnet", "NetCoreDocker.dll"]
 ```
 
-The `FROM mcr.microsoft.com/dotnet/aspnet:5.0` is an image containing the dotnet 5.0 runtime.
+The `FROM mcr.microsoft.com/dotnet/aspnet:5.0` command is to pull an image containing the dotnet 5.0 runtime.
 
 The `COPY` command tells docker to copy the specified folder on your computer to a folder on the container.
 Here, the _publish_ folder is copied to a folder named _DockerizedApp_ inside the container.
@@ -22,6 +22,17 @@ The `WORKDIR` command changes the **current directory** inside the container to 
 The `ENTRYPOINT` command tells docker to configure the container to run as an executable.
 When the container starts, the `ENTRYPOINT` command runs. When the command ends, the container
 automatically stops.
+
+## Publish the App
+
+Use the local dotnet runtime to build and publish the release artifacts.
+
+```
+dotnet publish -c Release
+```
+
+The `-c` flag is the configuration to publish for. By default it is `Debug`. The `Relase` config has fewer artifacts.
+
 
 ## Create Image
 
